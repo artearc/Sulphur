@@ -1,0 +1,44 @@
+@import '@fontsource/jacquard-12/400.css';
+@import '@fontsource/jacquard-24/400.css';
+@import '@fontsource/pixelify-sans/400.css';
+@import '@fontsource/pixelify-sans/600.css';
+
+:root {
+  --ink: #0b0709;
+  --ink2: #1a1014;
+  --parch: #e8d9b5;
+  --parch-dim: #a8987a;
+  --gold: #f2c45a;
+  --gold-deep: #a06c18;
+  --holy: #fff4cc;
+  --crimson: #c8243a;
+  --crimson-deep: #6a0a18;
+  --blood: #8a1016;
+  --stone: #34303c;
+  --ash: #807888;
+  --px: 4px; /* UI pixel unit, set from JS to match the render scale */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #050304;
+  color: var(--parch);
+  font-family: 'Pixelify Sans', monospace;
+  -webkit-font-smoothing: none;
+  user-select: none;
+}
+#app { position: fixed; inset: 0; }
+#game {
+  position: absolute; inset: 0;
+  image-rendering: pixelated;
+  display: block;
+  cursor: none;
+}
+#ui-root {
+  position: absolute; left: 0; top: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+  image-rendering: pixelated;
+}

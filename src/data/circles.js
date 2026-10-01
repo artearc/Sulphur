@@ -1,0 +1,133 @@
+// The nine circles: identity, mechanics, bestiary, bosses, music key, verse (Inferno, public domain).
+export const CIRCLES = [
+  {
+    id: 'limbo', n: 1, roman: 'I', name: 'Limbo', sin: 'Sin bautismo',
+    subtitle: 'Donde los justos sin fe suspiran',
+    verse: ['"Sanza speme vivemo in disio."', 'Sin esperanza vivimos en deseo. — Inf. IV'],
+    liquid: { kind: 'mist', block: false, slow: 0, damage: 0 },
+    mechanic: 'fog', // reduced visibility pockets; shades blink through the fog
+    enemies: ['sombra', 'lamento', 'eco'],
+    elite: 'sombra',
+    miniboss: 'lonza',
+    boss: 'minos',
+    props: { common: ['mourner', 'poetBust', 'brokenColumn', 'urn', 'lectern', 'graveCross', 'candelabra'], light: 'brazier', fireRamp: [0x1a2a40, 0x2e4a6a, 0x5a7aa0, 0x9ab8d8, 0xd8e8f8, 0xffffff] },
+    music: { root: 50, scale: 'aeolian', tempo: 56, voice: 'choir', drone: 'soft' },
+    ambient: 'ash',
+  },
+  {
+    id: 'lujuria', n: 2, roman: 'II', name: 'Lujuria', sin: 'Lujuria',
+    subtitle: 'La bufera infernal, che mai non resta',
+    verse: ['"Amor, ch\'a nullo amato amar perdona..."', 'Amor, que a ningún amado amar perdona. — Inf. V'],
+    liquid: { kind: 'void', block: true, slow: 0, damage: 0 },
+    mechanic: 'wind', // gusts push the player; direction telegraphed by streaks
+    enemies: ['amante', 'sucubo', 'pareja'],
+    elite: 'amante',
+    miniboss: 'torbellino',
+    boss: 'semiramis',
+    props: { common: ['windTree', 'loversStatue', 'thornRose', 'brokenColumn', 'mourner', 'urn'], light: 'brazier', fireRamp: [0x3a0820, 0x7a1a44, 0xc02a6a, 0xf05a90, 0xff9ac0, 0xfff0f4] },
+    music: { root: 52, scale: 'phrygian', tempo: 92, voice: 'strings', drone: 'storm' },
+    ambient: 'petal',
+  },
+  {
+    id: 'gula', n: 3, roman: 'III', name: 'Gula', sin: 'Gula',
+    subtitle: 'Lluvia eterna, maldita, fría y grave',
+    verse: ['"Voi cittadini mi chiamaste Ciacco."', 'Vosotros, ciudadanos, me llamasteis Ciacco. — Inf. VI'],
+    liquid: { kind: 'muck', block: false, slow: 0.45, damage: 0, poison: true },
+    mechanic: 'devour', // gluttons eat corpses and grow; putrid pools slow and poison
+    enemies: ['gloton', 'gusano', 'cebado'],
+    elite: 'gloton',
+    miniboss: 'devorador',
+    boss: 'cerbero',
+    props: { common: ['bloatedCorpse', 'feastRemains', 'maggotMound', 'bones', 'skullPile', 'urn'], light: 'brazier', fireRamp: [0x1a2008, 0x3e5216, 0x7a9a20, 0xb8d040, 0xe8f080, 0xffffd0] },
+    music: { root: 45, scale: 'locrian', tempo: 70, voice: 'brass', drone: 'deep' },
+    ambient: 'poison',
+  },
+  {
+    id: 'avaricia', n: 4, roman: 'IV', name: 'Avaricia', sin: 'Avaricia y Prodigalidad',
+    subtitle: 'Peso contra peso, por toda la eternidad',
+    verse: ['"Pape Satàn, pape Satàn aleppe!"', 'Grita Pluto con voz cloqueante. — Inf. VII'],
+    liquid: { kind: 'gold', block: false, slow: 0.2, damage: 6 },
+    mechanic: 'cursedGold', // cursed gold pickups; coin traps on pressure plates
+    enemies: ['codicioso', 'rodador', 'mimico'],
+    elite: 'codicioso',
+    miniboss: 'loba',
+    boss: 'pluto',
+    props: { common: ['coinPile', 'moneySack', 'goldStatue', 'scales', 'brokenColumn', 'urn'], light: 'brazier', fireRamp: R5(0x3a2408, 0xa06c18, 0xf2c45a, 0xffe8a0) },
+    music: { root: 48, scale: 'harmonic', tempo: 84, voice: 'bells', drone: 'metal' },
+    ambient: 'gold',
+  },
+  {
+    id: 'ira', n: 5, roman: 'V', name: 'Ira', sin: 'Ira y Acidia',
+    subtitle: 'La laguna Estigia hierve de rencor',
+    verse: ['"Fitti nel limo dicon: Tristi fummo..."', 'Hundidos en el limo dicen: Tristes fuimos. — Inf. VII'],
+    liquid: { kind: 'styx', block: false, slow: 0.4, damage: 3 },
+    mechanic: 'explosive', // wrathful spirits detonate; smoke vents
+    enemies: ['iracundo', 'hundido', 'humo'],
+    elite: 'iracundo',
+    miniboss: 'argenti',
+    boss: 'furias',
+    props: { common: ['reeds', 'drownedHand', 'burningDebris', 'bones', 'skullPile', 'brokenColumn'], light: 'brazier', fireRamp: [0x3a0800, 0x8a1800, 0xe04010, 0xff8030, 0xffc070, 0xfff0c0] },
+    music: { root: 47, scale: 'phrygian', tempo: 118, voice: 'drums', drone: 'rage' },
+    ambient: 'smoke',
+  },
+  {
+    id: 'herejia', n: 6, roman: 'VI', name: 'Herejía', sin: 'Herejía',
+    subtitle: 'Sepulcros en llamas en la ciudad de Dite',
+    verse: ['"Ed el s\'ergea col petto e con la fronte..."', 'Y él se erguía con el pecho y la frente. — Inf. X'],
+    liquid: { kind: 'lava', block: false, slow: 0.1, damage: 10, burn: true },
+    mechanic: 'flameTombs', // tombs erupt in telegraphed pillars of fire
+    enemies: ['espectroFuego', 'necromante', 'hereje'],
+    elite: 'necromante',
+    miniboss: 'heresiarca',
+    boss: 'medusa',
+    props: { common: ['flameTomb', 'ironCross', 'graveCross', 'skullPile', 'urn', 'brokenColumn'], light: 'brazier', fireRamp: null },
+    music: { root: 49, scale: 'locrian', tempo: 76, voice: 'choirDist', drone: 'fire' },
+    ambient: 'ember',
+  },
+  {
+    id: 'violencia', n: 7, roman: 'VII', name: 'Violencia', sin: 'Violencia',
+    subtitle: 'El Flegetonte, río de sangre hirviente',
+    verse: ['"Or ti fia tolto ogne sospetto..."', 'El bosque de los suicidas sangra al quebrarse. — Inf. XIII'],
+    liquid: { kind: 'blood', block: false, slow: 0.3, damage: 8 },
+    mechanic: 'bloodRiver', // boiling rivers; centaur volleys from the edges
+    enemies: ['centauro', 'bestia', 'arpia'],
+    elite: 'bestia',
+    miniboss: 'neso',
+    boss: 'minotauro',
+    props: { common: ['suicideTree', 'thornBush', 'skullTotem', 'bones', 'skullPile', 'brokenColumn'], light: 'brazier', fireRamp: [0x3a0404, 0x7a0a0a, 0xc01a14, 0xf04a30, 0xff8a60, 0xffd0b0] },
+    music: { root: 43, scale: 'aeolian', tempo: 104, voice: 'horns', drone: 'tribal' },
+    ambient: 'bloodMist',
+  },
+  {
+    id: 'fraude', n: 8, roman: 'VIII', name: 'Fraude', sin: 'Fraude',
+    subtitle: 'Malebolge: diez fosas de piedra y engaño',
+    verse: ['"Considerate la vostra semenza..."', 'Considerad vuestra simiente. — Ulises, Inf. XXVI'],
+    liquid: { kind: 'pitch', block: false, slow: 0.5, damage: 4 },
+    mechanic: 'illusion', // darkness, false pickups, disguised enemies
+    enemies: ['falsario', 'malebranche', 'ladron'],
+    elite: 'malebranche',
+    miniboss: 'malacoda',
+    boss: 'gerion',
+    props: { common: ['mirror', 'maskPedestal', 'serpentStatue', 'cage', 'brokenColumn', 'urn'], light: 'brazier', fireRamp: [0x041a1a, 0x0a3a3a, 0x1e7a70, 0x40e0c0, 0xa0fff0, 0xffffff] },
+    music: { root: 46, scale: 'whole', tempo: 88, voice: 'detuned', drone: 'liar' },
+    ambient: 'shadow',
+  },
+  {
+    id: 'traicion', n: 9, roman: 'IX', name: 'Traición', sin: 'Traición',
+    subtitle: 'Cocito: el lago helado donde llora el traidor',
+    verse: ['"Lo \'mperador del doloroso regno..."', 'El emperador del reino doloroso. — Inf. XXXIV'],
+    liquid: { kind: 'ice', block: false, slow: 0, damage: 0, slippery: true },
+    mechanic: 'ice', // slippery ice; standing still lets frost creep in
+    enemies: ['congelado', 'traidor', 'glacial'],
+    elite: 'congelado',
+    miniboss: 'efialtes',
+    boss: 'lucifer',
+    props: { common: ['iceSpike', 'frozenSinner', 'crystalCluster', 'brokenSword', 'brokenColumn', 'mourner'], light: 'brazier', fireRamp: [0x0a1a30, 0x1a4a7a, 0x4a8ac0, 0x9ad8ff, 0xd8f4ff, 0xffffff] },
+    music: { root: 44, scale: 'aeolian', tempo: 48, voice: 'glass', drone: 'ice' },
+    ambient: 'frost',
+  },
+];
+
+function R5(a, b, c, d) { return [a, b, b, c, d, 0xfff4cc]; }
+
+export const CIRCLE_BY_ID = Object.fromEntries(CIRCLES.map((c) => [c.id, c]));
